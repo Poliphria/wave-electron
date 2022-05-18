@@ -2,10 +2,10 @@ import {
   VStack,
   Text,
   Flex,
-  Button,
 } from "@chakra-ui/react";
 import Container from "./Container";
 import YoutubeLink from "./YouTubeLink";
+import UploadButton from "./UploadButton"
 import ColorModeSwitcher from "./ColorModeSwitcher";
 
 
@@ -20,17 +20,7 @@ export default function Home() {
         justify="center"
         flexGrow="4"
       >
-        <Button
-          borderRadius="16px"
-          width={40}
-          height={12}
-          paddingLeft="16px"
-          paddingRight="16px"
-          shadow="xl"
-          _focus={{ boxShadow: "none", shadow: "xl" }}
-        >
-          Upload
-        </Button>
+        <UploadButton />
         <Text>
           Or
         </Text>

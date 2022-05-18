@@ -3,8 +3,15 @@ import { Box, Button } from "@chakra-ui/react";
 
 const UploadButton = () => {
 
-  const handleClick = () => {
-    console.log('You clicked the upload button')
+  const handleClick = async () => {
+    try {
+      const filePath = await window.api.openFile() // call exposed api from preload script
+      if (filePath) {
+        console.log(filePath)
+      }
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -24,5 +31,9 @@ const UploadButton = () => {
     </Box>
   );
 };
+
+/* ipcRenderer.on('selected-file', (event, file) => {
+  console.log('File information: \n', file)
+}) */
 
 export default UploadButton;
