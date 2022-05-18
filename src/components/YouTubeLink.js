@@ -12,8 +12,13 @@ export default function YoutubeLink() {
   const [value, setValue] = useState(""); // variable to hold input string
   const handleChange = (event) => setValue(event.target.value);
 
-  function handleClick() {
-    console.log('You clicked the button')
+  const handleClick = async () => {
+    try {
+      const isValidURL = await window.api.validateURL(value)
+      isValidURL ? console.log('Valid URL') : console.log('Invalid URL')
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (

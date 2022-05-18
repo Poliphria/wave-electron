@@ -1,6 +1,7 @@
 const { dialog } = require('electron')
 const os = require('os')
 const path = require('path')
+const ytdl = require('ytdl-core')
 
 exports.openFile = async () => {
     const { canceled, filePaths } = await dialog.showOpenDialog({
@@ -15,4 +16,8 @@ exports.openFile = async () => {
       } else {
           return filePaths[0]
       }
+}
+
+exports.validateURL = (event, args) => {
+    return ytdl.validateURL(args)
 }

@@ -1,8 +1,7 @@
 // ./public/electron.js
 const { app, BrowserWindow, session, ipcMain, dialog } = require('electron');
 const isDev = require('electron-is-dev');
-const { openFile } = require('./eventHandlers/openFile');
-const os = require('os')
+const { openFile, validateURL } = require('./utils/eventHandlers');
 const path = require('path');
 
 // Add React Developer Tools if in Dev mode
@@ -51,6 +50,9 @@ app.whenReady().then(() => {
     // Listen for open file ask from renderer
     ipcMain.handle('dialog:openFile', openFile)
 
+    // Listen for YouTube Link URL validation ask from renderer
+    ipcMain.handle('validate-url', validateURL)
+    
     createWindow()
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows() === 0) createWindow()
