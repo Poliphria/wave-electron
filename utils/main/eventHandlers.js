@@ -17,7 +17,3 @@ exports.openFile = async () => {
           return filePaths[0]
       }
 }
-
-exports.validateURL = (event, args) => {
-    return ytdl.validateURL(args)
-}

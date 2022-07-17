@@ -49,10 +49,7 @@ app.whenReady().then(() => {
     
     // Listen for open file ask from renderer
     ipcMain.handle('dialog:openFile', openFile)
-
-    // Listen for YouTube Link URL validation ask from renderer
-    ipcMain.handle('validate-url', validateURL)
-    
+      
     createWindow()
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows() === 0) createWindow()
