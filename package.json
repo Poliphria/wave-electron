@@ -21,6 +21,7 @@
     "react-icons": "^3.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-youtube": "^9.0.2",
     "web-vitals": "^0.2.2",
     "ytdl-core": "^4.11.0"
   },

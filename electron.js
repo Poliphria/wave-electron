@@ -1,7 +1,7 @@
 // ./public/electron.js
 const { app, BrowserWindow, session, ipcMain, dialog } = require('electron');
 const isDev = require('electron-is-dev');
-const { openFile, validateURL } = require('./utils/eventHandlers');
+const { openFile, validateURL } = require('./utils/main/eventHandlers');
 const path = require('path');
 
 // Add React Developer Tools if in Dev mode

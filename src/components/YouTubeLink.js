@@ -9,11 +9,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { matchYouTubeURL, getYouTubeID } from "../utils/matchYouTubeURL";
 
 export default function YoutubeLink() {
+  let navigate = useNavigate()
 
-  const [value, setValue] = useState(""); // variable to hold input string
-  const handleChange = (event) => setValue(event.target.value);
+  const [link, setLink] = useState(""); // variable to hold input string
+  const handleChange = (event) => setLink(event.target.value);
 
 
   const {
@@ -23,8 +26,11 @@ export default function YoutubeLink() {
   } = useForm();
 
   const onSubmit = () => {
-    console.log('Link works!')
+    navigate('/transcribe', { state : {
+      videoID: getYouTubeID(link)
+    }})
   }
+
 
   return (
     <Box>
@@ -34,12 +40,11 @@ export default function YoutubeLink() {
             id="link"
             {...register("link", {
               required: "This is required",
-              validate: async (link) =>
-                await window.api.validateURL(link) || "Invalid YouTube Link", // react-hook-form validation needs to be a function and then or'd with err msg
+              validate:  (link) => matchYouTubeURL(link) || "Invalid YouTube Link", // react-hook-form validation needs to be a function and then or'd with err msg
             })}
             pr="4.5rem"
             type="text"
-            value={value}
+            value={link}
             onChange={handleChange}
             placeholder="YouTube Link"
           />

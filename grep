@@ -1,0 +1,770 @@
+  100  git add . 
+  101  git status
+  102  git commit -m "Add upload button logic"
+  103  git push
+  104  git push --set-upstream origin upload-logic
+  105  clear
+  106  brew update && brew upgrade
+  107  brew update && brew upgrade
+  108  brew update && brew upgrade
+  109  clear
+  110  ks
+  111  ls
+  112  cd Desktop/code
+  113  ls
+  114  code . 
+  115  cd wave
+  116  code . 
+  117  git pull 
+  118  git branch
+  119  yarn dev
+  120  brew update && brew upgrade
+  121  /Volumes/Logic\ Pro\ X\ 10.7.2\ MAS/Open\ Gatekeeper\ friendly ; exit;
+  122  clear
+  123  /Volumes/Logic\ Pro\ X\ 10.7.2\ MAS/Open\ Gatekeeper\ friendly ; exit;
+  124    sudo spctl --master-enable\n
+  125  clear
+  126  cd Desktop/code/wave
+  127  git status
+  128  git diff
+  129  code . 
+  130  git status
+  131  git push origin upload-logic
+  132  clear
+  133  git push origin upload-logic
+  134  git push origin upload-logic
+  135  history 50
+  136  brew update && brew upgrade
+  137  brew update && brew upgrade
+  138  git status
+  139  git add . 
+  140  git commit -m "Add TODO comments"
+  141  git push origin upload-logic
+  142  yarn dev
+  143  clear
+  144  brew update && brew upgrade
+  145  yarn dev
+  146  yarn dev
+  147  yarn dev
+  148  brew update && brew upgrade
+  149  cd Desktop/code/wave
+  150  code . 
+  151  yarn dev
+  152  pwd
+  153  cd
+  154  ls
+  155  cd Pictures
+  156  ks
+  157  ls
+  158  cd
+  159  brew update && brew upgrade
+  160  cd Desktop/code/wave
+  161  yarn
+  162  code .
+  163  git status
+  164  git diff
+  165  clear
+  166  git add . 
+  167  git log
+  168  code . 
+  169  git status
+  170  git add . 
+  171  git commit -m "Add form context to form child components"
+  172  git push origin upload-logic
+  173  clear
+  174  brew update && brew upgrade
+  175  brew update && brew upgrade
+  176  node -v
+  177  nvm
+  178  nvm use --lts
+  179  nvm install --lts
+  180  node -v
+  181  brew update && brew upgrade
+  182  fig doctor
+  183  brew update && brew upgrade
+  184  nvm
+  185  nvm use --lts
+  186  nvm install --lts
+  187  brew update && brew upgrade
+  188  ls
+  189  yarn
+  190  clear
+  191  yarn update
+  192  npm install --global yarn
+  193  npm install -g npm@8.5.5
+  194  clear
+  195  yarn self-update
+  196  brew install --cask fig
+  197  clear
+  198  clear
+  199  clear
+  200  brew update && brew upgrade 
+  201  cd Desktop/code/wave/
+  202  ls
+  203  git branch
+  204  clear
+  205  clear
+  206  git pull
+  207  clear
+  208  brew update && brew upgrade 
+  209  clear
+  210  fig
+  211  brew update && brew upgrade 
+  212  brew update && brew upgrade
+  213  cd Desktop/code/wave/
+  214  git pull
+  215  clear
+  216  brew update && brew upgrade
+  217  clear
+  218  brew update && brew upgrade
+  219   brew u
+  220  brew update && brew upgrade
+  221  brew update && brew upgrade
+  222  clear
+  223  
+  224  brew update && brew upgrade
+  225  clear
+  226  ffmpeg -version
+  227  clear
+  228  cd Desktop/code/
+  229  ls
+  230  pwd
+  231  mkdir mp3toaiff
+  232  cd mp3toaiff/
+  233  code .
+  234  yarn init
+  235  clear
+  236  ls
+  237  yarn add ytdl-core
+  238  clear
+  239  cd 
+  240  pwd
+  241  cd ~home
+  242  cd home
+  243  ls
+  244  ./ytmp3.js
+  245  cd Desktop/code/mp3toaiff/
+  246  ls
+  247  ./ytmp3.js https://youtu.be/DvNVdo8Tchw
+  248  chmod u+x
+  249  chmod u+x ytmp3.js
+  250  ./ytmp3.js
+  251  yarn add fluent-ffmpeg
+  252  ./ytmp3.js
+  253  ./ytmp3.js
+  254  ./ytmp3.js
+  255  ./ytmp3.js
+  256  ./ytmp3.js
+  257  clear
+  258  clear
+  259  ./ytmp3.js
+  260  chmod u+x
+  261  ./ytmp3.js https://www.youtube.com/watch?v=DvNVdo8Tchw
+  262  ./ytmp3.js DvNVdo8Tchw
+  263  ./ytmp3.js DvNVdo8Tchw
+  264  ./ytmp3.js DvNVdo8Tchw
+  265  ./ytmp3.js DvNVdo8Tchw
+  266  ./ytmp3.js DvNVdo8Tchw
+  267  ls
+  268  cd
+  269  ls
+  270  cd Downloads/
+  271  ls
+  272  find DvNVdo8Tchw.mp3
+  273  cd
+  274  find DvNVdo8Tchw.mp3
+  275  find . -name 'DvNVdo8Tchw.mp3' -p
+  276  find . -name 'DvNVdo8Tchw.mp3' -P
+  277  find . -name 'DvNVdo8Tchw.mp3'
+  278  clear
+  279  find DvNVdo8Tchw.mp3
+  280  find DvNVdo8Tchw.mp3 -P
+  281  find +~ DvNVdo8Tchw.mp3 -P
+  282  find +~ DvNVdo8Tchw.mp3
+  283  clear
+  284  cd
+  285  ls
+  286  cd Downloads/
+  287  ls
+  288  clear
+  289  ls
+  290  ls
+  291  rm DvNVdo8Tchw.mp3
+  292  ls
+  293  clear
+  294  ls
+  295  ls
+  296  ls
+  297  clear
+  298  clear
+  299  ls
+  300  ls -a
+  301  lear
+  302  clear
+  303  ls
+  304  cd Downloads/
+  305  ls
+  306  ls -a
+  307  cd ../
+  308  ls
+  309  ls
+  310  ls -a
+  311  rm DvNVdo8Tchw.mp3
+  312  ls
+  313  ./ytmp3.js DvNVdo8Tchw
+  314  cd Desktop/code/mp3toaiff/
+  315  ./ytmp3.js DvNVdo8Tchw
+  316  ./ytmp3.js DvNVdo8Tchw
+  317  ls
+  318  ./ytmp3.js DvNVdo8Tchw
+  319  ls
+  320  ./ytmp3.js DvNVdo8Tchw
+  321  ./ytmp3.js DvNVdo8Tchw
+  322  ./ytmp3.js DvNVdo8Tchw
+  323  ./ytmp3.js DvNVdo8Tchw
+  324  ./ytmp3.js DvNVdo8Tchw
+  325  ./ytmp3.js DvNVdo8Tchw
+  326  ./ytmp3.js DvNVdo8Tchw -a
+  327  ./ytmp3.js DvNVdo8Tchw -a
+  328  ./ytmp3.js DvNVdo8Tchw -a
+  329  ./ytmp3.js DvNVdo8Tchw -a
+  330  ./ytmp3.js DvNVdo8Tchw -a
+  331  ./ytmp3.js DvNVdo8Tchw -a
+  332  ./ytmp3.js DvNVdo8Tchw -a
+  333  ./ytmp3.js DvNVdo8Tchw -a
+  334  ./ytmp3.js DvNVdo8Tchw -a
+  335  ./ytmp3.js DvNVdo8Tchw -a
+  336  ./ytmp3.js DvNVdo8Tchw -a
+  337  ./ytmp3.js DvNVdo8Tchw -a
+  338  ./ytmp3.js DvNVdo8Tchw -a
+  339  ./ytmp3.js DvNVdo8Tchw -a
+  340  clear
+  341  git init
+  342  clear
+  343  ls
+  344  git status
+  345  git stage
+  346  clear
+  347  git status
+  348  ./ytmp3.js https://www.youtube.com/watch?v=xYy3S67N1es
+  349  ./ytmp3.js "https://www.youtube.com/watch?v=xYy3S67N1es"
+  350  git add .
+  351  git status
+  352  git add README
+  353  git status
+  354  git commit -m 'Initial commit' 
+  355  git remote add origin https://github.com/Poliphria/ytmp3.git\ngit branch -M master\ngit push -u origin master
+  356  git status
+  357  git add. 
+  358  git add .
+  359  git commit -m 'Update README'
+  360  clear
+  361  git push origin master
+  362  clear
+  363  git push origin master
+  364  git status
+  365  git add .
+  366  git commit -m 'Add correct README file'
+  367  git push origin
+  368  clear
+  369  ./ytmp3.js "https://www.youtube.com/watch?v=DvNVdo8Tchw" -a
+  370  ./ytmp3.js "https://www.youtube.com/watch?v=j5rLBBtb-CI" -a
+  371  ./ytmp3.js "https://www.youtube.com/watch?v=j5rLBBtb-CI" -a
+  372  ./ytmp3.js "https://www.youtube.com/watch?v=huMavLO2aBk" -a 
+  373  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  374  cd
+  375  ls
+  376  ls -a
+  377  ls
+  378  find -name "Sonny Boy OST - スペア.mp3"
+  379  find --name "Sonny Boy OST - スペア.mp3"
+  380  man find
+  381  find ./ -type f  | grep " " \n
+  382  find --name "Sonny Boy OST - スペア.mp3"
+  383  find "Sonny Boy OST - スペア.mp3"
+  384  find .mp3
+  385  find *.mp3
+  386  find ./ *.mp3
+  387  find ./ *.mp3
+  388  find *.mp3
+  389  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  390  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  391  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  392  cd
+  393  brew update && brew upgrade
+  394  brew update && brew upgrade
+  395  clear
+  396  brew update && brew upgrade
+  397  cd Desktop/code/mp3toaiff/
+  398  ls
+  399  git status
+  400  git diff
+  401  clear
+  402  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  403  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  404  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  405  CLEAR
+  406  clear
+  407  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  408  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  409  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  410  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  411  yarn
+  412  clear
+  413  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  414  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  415  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  416  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  417  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  418  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  419  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  420  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  421  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  422  ./ytmp3.js U1mA8CuaMXo -a
+  423  ls
+  424  npm install -g
+  425  rm remove -g
+  426  npm uninstall -g
+  427  clear
+  428  yarn global
+  429  yarn global ls
+  430  yarn global list
+  431  yarm global add
+  432  yarn global add
+  433  yarn global list
+  434  ytmp3
+  435  yarn global list
+  436  yarn global add .
+  437  yarn global add ./bin/ytmpj3.js
+  438  npm install -g
+  439  npm list -g --depth 0
+  440  cd
+  441  clear
+  442  ytmp3 U1mA8CuaMXo -aiff
+  443  ytmp3 U1mA8CuaMXo --aiff
+  444  npm list -g --depth 0
+  445  ytmp3 U1mA8CuaMXo 
+  446  ytmp3 "https://www.youtube.com/watch?v=H_59hihZ3MM" 
+  447  ytmp3 "https://www.youtube.com/watch?v=H_59hihZ3MM" -a
+  448  brew update
+  449  brew upgrade
+  450  brew update && brew upgrade
+  451  brew update && brew upgrade
+  452  brew update && brew upgrade
+  453  ytmp3 "https://www.youtube.com/watch?v=qbs1O-IUBv8&list=LL&index=25" -a
+  454  ytmp3 "https://www.youtube.com/watch?v=aE-M8keU528" -a
+  455  cd Desktop/code/
+  456  mkdir electron-test
+  457  cd electron-test/
+  458  ytmp3 "https://youtu.be/7HgJIAUtICU?list=RD7HgJIAUtICU" -a
+  459  ytmp3 "https://www.youtube.com/watch?v=7HgJIAUtICU" -a
+  460  ytmp3 7HgJIAUtICU -a
+  461  ytmp3 QlA3XC6_zAw -a
+  462  yarn add react
+  463  yarn add react-dom
+  464  yarn add react-router-dom
+  465  npx create-react-app
+  466  ls
+  467  cd ../
+  468  rm -rf electron-test/
+  469  create-react-app electron-test
+  470  npx create-react-app electron-test
+  471  ls
+  472  rm -rf electron-test/
+  473  yarn create react-app electron-test
+  474  cd electron-test/
+  475  yarn start
+  476  brew update && brew upgrade
+  477  cd Desktop/code/electron-test/
+  478  clear
+  479  ls
+  480  cd ../
+  481  ls
+  482  rm -rf electron-test/
+  483  yarn create react-app my-app --template @chakra-ui\n
+  484  clear
+  485  ls
+  486  rm -rf my-app/
+  487  yarn create react-app electron-test --template @chakra-ui\n
+  488  ls
+  489  rm -rf electron-test/
+  490  fig
+  491  brew update && brew upgrade
+  492  clear
+  493  ls
+  494  ls -a
+  495  cd .DS_Store
+  496  ls
+  497  clear
+  498  ls
+  499  cd wave/
+  500  ls
+  501  clear
+  502  ls
+  503  cd ../ 
+  504  ls
+  505  yarn create react-app --template @chakra-ui/react
+  506  ls
+  507  yarn create react-app my-app --template @chakra-ui\n
+  508  rm -rf my-app/
+  509  ls
+  510  yarn create react-app electron-test --template @chakra-ui\n
+  511  cd electron-test/
+  512  code .
+  513  fig
+  514  yarn add electron electron-is-dev
+  515  yarn add concurrently wait-on -D\n
+  516  yarn dev
+  517  cd ../../
+  518  ls
+  519  cd Library/
+  520  ls
+  521  cd Application\ Support/
+  522  ls
+  523  cd ../
+  524  ls
+  525  cd Application\ Support/
+  526  ls
+  527  clear
+  528  ls
+  529  cd App\ Store/
+  530  ls
+  531  cd
+  532  ls
+  533  find . type d -iname fmkadmapgofadopljbjfkapdkoienihi
+  534  yarn add react-router-dom
+  535  yarn dev
+  536  cd
+  537  ls
+  538  cd Library/
+  539  ls
+  540  cd Application\ Support/
+  541  ls
+  542  cd Google/Chrome/
+  543  ls
+  544  cd Default/Extensions/
+  545  ls
+  546  cd fmkadmapgofadopljbjfkapdkoienihi/
+  547  ls
+  548  pws
+  549  pwd
+  550  ls
+  551  ls -a
+  552  ls -a
+  553  ls -@
+  554  cd 4.24.3_0/
+  555  ls
+  556  pwd
+  557  cd
+  558  ls
+  559  cd Desktop/code/electron-test/
+  560  ls
+  561  yarn dev
+  562  yarn dev
+  563  yarn dev
+  564  yarn dev
+  565  yarn dev
+  566  yarn dev
+  567  yarn dev
+  568  yarn dev
+  569  yarn dev
+  570  yarn dev
+  571  yarn dev
+  572  brew update && brew upgrade
+  573  clear
+  574  ls
+  575  ympt3 
+  576  ytmp3
+  577  clear
+  578  powermetrics --samplers smc |grep -i "CPU die temperature"
+  579  sudo powermetrics --samplers smc |grep -i "CPU die temperature"
+  580  sudo powermetrics --samplers smc |grep -i "CPU die temperature"\n
+  581  ytmp3 "https://www.youtube.com/watch?v=L_gaAlDFZrA" -a
+  582  clear
+  583  brew update && brew upgrade
+  584  sudo nano etc/hosts
+  300  ls -a
+  301  lear
+  302  clear
+  303  ls
+  304  cd Downloads/
+  305  ls
+  306  ls -a
+  307  cd ../
+  308  ls
+  309  ls
+  310  ls -a
+  311  rm DvNVdo8Tchw.mp3
+  312  ls
+  313  ./ytmp3.js DvNVdo8Tchw
+  314  cd Desktop/code/mp3toaiff/
+  315  ./ytmp3.js DvNVdo8Tchw
+  316  ./ytmp3.js DvNVdo8Tchw
+  317  ls
+  318  ./ytmp3.js DvNVdo8Tchw
+  319  ls
+  320  ./ytmp3.js DvNVdo8Tchw
+  321  ./ytmp3.js DvNVdo8Tchw
+  322  ./ytmp3.js DvNVdo8Tchw
+  323  ./ytmp3.js DvNVdo8Tchw
+  324  ./ytmp3.js DvNVdo8Tchw
+  325  ./ytmp3.js DvNVdo8Tchw
+  326  ./ytmp3.js DvNVdo8Tchw -a
+  327  ./ytmp3.js DvNVdo8Tchw -a
+  328  ./ytmp3.js DvNVdo8Tchw -a
+  329  ./ytmp3.js DvNVdo8Tchw -a
+  330  ./ytmp3.js DvNVdo8Tchw -a
+  331  ./ytmp3.js DvNVdo8Tchw -a
+  332  ./ytmp3.js DvNVdo8Tchw -a
+  333  ./ytmp3.js DvNVdo8Tchw -a
+  334  ./ytmp3.js DvNVdo8Tchw -a
+  335  ./ytmp3.js DvNVdo8Tchw -a
+  336  ./ytmp3.js DvNVdo8Tchw -a
+  337  ./ytmp3.js DvNVdo8Tchw -a
+  338  ./ytmp3.js DvNVdo8Tchw -a
+  339  ./ytmp3.js DvNVdo8Tchw -a
+  340  clear
+  341  git init
+  342  clear
+  343  ls
+  344  git status
+  345  git stage
+  346  clear
+  347  git status
+  348  ./ytmp3.js https://www.youtube.com/watch?v=xYy3S67N1es
+  349  ./ytmp3.js "https://www.youtube.com/watch?v=xYy3S67N1es"
+  350  git add .
+  351  git status
+  352  git add README
+  353  git status
+  354  git commit -m 'Initial commit' 
+  355  git remote add origin https://github.com/Poliphria/ytmp3.git\ngit branch -M master\ngit push -u origin master
+  356  git status
+  357  git add. 
+  358  git add .
+  359  git commit -m 'Update README'
+  360  clear
+  361  git push origin master
+  362  clear
+  363  git push origin master
+  364  git status
+  365  git add .
+  366  git commit -m 'Add correct README file'
+  367  git push origin
+  368  clear
+  369  ./ytmp3.js "https://www.youtube.com/watch?v=DvNVdo8Tchw" -a
+  370  ./ytmp3.js "https://www.youtube.com/watch?v=j5rLBBtb-CI" -a
+  371  ./ytmp3.js "https://www.youtube.com/watch?v=j5rLBBtb-CI" -a
+  372  ./ytmp3.js "https://www.youtube.com/watch?v=huMavLO2aBk" -a 
+  373  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  374  cd
+  375  ls
+  376  ls -a
+  377  ls
+  378  find -name "Sonny Boy OST - スペア.mp3"
+  379  find --name "Sonny Boy OST - スペア.mp3"
+  380  man find
+  381  find ./ -type f  | grep " " \n
+  382  find --name "Sonny Boy OST - スペア.mp3"
+  383  find "Sonny Boy OST - スペア.mp3"
+  384  find .mp3
+  385  find *.mp3
+  386  find ./ *.mp3
+  387  find ./ *.mp3
+  388  find *.mp3
+  389  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  390  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  391  ./ytmp3.js "https://www.youtube.com/watch?v=pdPN9q5_log" -a
+  392  cd
+  393  brew update && brew upgrade
+  394  brew update && brew upgrade
+  395  clear
+  396  brew update && brew upgrade
+  397  cd Desktop/code/mp3toaiff/
+  398  ls
+  399  git status
+  400  git diff
+  401  clear
+  402  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  403  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  404  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  405  CLEAR
+  406  clear
+  407  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  408  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  409  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  410  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  411  yarn
+  412  clear
+  413  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  414  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  415  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  416  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  417  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  418  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  419  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  420  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  421  ./ytmp3.js "https://www.youtube.com/watch?v=HNQic9N2I7c" -a
+  422  ./ytmp3.js U1mA8CuaMXo -a
+  423  ls
+  424  npm install -g
+  425  rm remove -g
+  426  npm uninstall -g
+  427  clear
+  428  yarn global
+  429  yarn global ls
+  430  yarn global list
+  431  yarm global add
+  432  yarn global add
+  433  yarn global list
+  434  ytmp3
+  435  yarn global list
+  436  yarn global add .
+  437  yarn global add ./bin/ytmpj3.js
+  438  npm install -g
+  439  npm list -g --depth 0
+  440  cd
+  441  clear
+  442  ytmp3 U1mA8CuaMXo -aiff
+  443  ytmp3 U1mA8CuaMXo --aiff
+  444  npm list -g --depth 0
+  445  ytmp3 U1mA8CuaMXo 
+  446  ytmp3 "https://www.youtube.com/watch?v=H_59hihZ3MM" 
+  447  ytmp3 "https://www.youtube.com/watch?v=H_59hihZ3MM" -a
+  448  brew update
+  449  brew upgrade
+  450  brew update && brew upgrade
+  451  brew update && brew upgrade
+  452  brew update && brew upgrade
+  453  ytmp3 "https://www.youtube.com/watch?v=qbs1O-IUBv8&list=LL&index=25" -a
+  454  ytmp3 "https://www.youtube.com/watch?v=aE-M8keU528" -a
+  455  cd Desktop/code/
+  456  mkdir electron-test
+  457  cd electron-test/
+  458  ytmp3 "https://youtu.be/7HgJIAUtICU?list=RD7HgJIAUtICU" -a
+  459  ytmp3 "https://www.youtube.com/watch?v=7HgJIAUtICU" -a
+  460  ytmp3 7HgJIAUtICU -a
+  461  ytmp3 QlA3XC6_zAw -a
+  462  yarn add react
+  463  yarn add react-dom
+  464  yarn add react-router-dom
+  465  npx create-react-app
+  466  ls
+  467  cd ../
+  468  rm -rf electron-test/
+  469  create-react-app electron-test
+  470  npx create-react-app electron-test
+  471  ls
+  472  rm -rf electron-test/
+  473  yarn create react-app electron-test
+  474  cd electron-test/
+  475  yarn start
+  476  brew update && brew upgrade
+  477  cd Desktop/code/electron-test/
+  478  clear
+  479  ls
+  480  cd ../
+  481  ls
+  482  rm -rf electron-test/
+  483  yarn create react-app my-app --template @chakra-ui\n
+  484  clear
+  485  ls
+  486  rm -rf my-app/
+  487  yarn create react-app electron-test --template @chakra-ui\n
+  488  ls
+  489  rm -rf electron-test/
+  490  fig
+  491  brew update && brew upgrade
+  492  clear
+  493  ls
+  494  ls -a
+  495  cd .DS_Store
+  496  ls
+  497  clear
+  498  ls
+  499  cd wave/
+  500  ls
+  501  clear
+  502  ls
+  503  cd ../ 
+  504  ls
+  505  yarn create react-app --template @chakra-ui/react
+  506  ls
+  507  yarn create react-app my-app --template @chakra-ui\n
+  508  rm -rf my-app/
+  509  ls
+  510  yarn create react-app electron-test --template @chakra-ui\n
+  511  cd electron-test/
+  512  code .
+  513  fig
+  514  yarn add electron electron-is-dev
+  515  yarn add concurrently wait-on -D\n
+  516  yarn dev
+  517  cd ../../
+  518  ls
+  519  cd Library/
+  520  ls
+  521  cd Application\ Support/
+  522  ls
+  523  cd ../
+  524  ls
+  525  cd Application\ Support/
+  526  ls
+  527  clear
+  528  ls
+  529  cd App\ Store/
+  530  ls
+  531  cd
+  532  ls
+  533  find . type d -iname fmkadmapgofadopljbjfkapdkoienihi
+  534  yarn add react-router-dom
+  535  yarn dev
+  536  cd
+  537  ls
+  538  cd Library/
+  539  ls
+  540  cd Application\ Support/
+  541  ls
+  542  cd Google/Chrome/
+  543  ls
+  544  cd Default/Extensions/
+  545  ls
+  546  cd fmkadmapgofadopljbjfkapdkoienihi/
+  547  ls
+  548  pws
+  549  pwd
+  550  ls
+  551  ls -a
+  552  ls -a
+  553  ls -@
+  554  cd 4.24.3_0/
+  555  ls
+  556  pwd
+  557  cd
+  558  ls
+  559  cd Desktop/code/electron-test/
+  560  ls
+  561  yarn dev
+  562  yarn dev
+  563  yarn dev
+  564  yarn dev
+  565  yarn dev
+  566  yarn dev
+  567  yarn dev
+  568  yarn dev
+  569  yarn dev
+  570  yarn dev
+  571  yarn dev
+  572  brew update && brew upgrade
+  573  clear
+  574  ls
+  575  ympt3 
+  576  ytmp3
+  577  clear
+  578  powermetrics --samplers smc |grep -i "CPU die temperature"
+  579  sudo powermetrics --samplers smc |grep -i "CPU die temperature"
+  580  sudo powermetrics --samplers smc |grep -i "CPU die temperature"\n
+  581  ytmp3 "https://www.youtube.com/watch?v=L_gaAlDFZrA" -a
+  582  clear
+  583  brew update && brew upgrade
+  584  sudo nano etc/hosts
