@@ -7,7 +7,7 @@ import {
   FormControl,
   FormErrorMessage
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { matchYouTubeURL, getYouTubeID } from "../utils/matchYouTubeURL";
@@ -31,6 +31,13 @@ export default function YoutubeLink() {
     }})
   }
 
+  const handleInputKeyDown = (e) => {
+    console.log('enter key pressed.')
+    if (e.key === 'Enter') {
+      handleSubmit()
+    }
+  }
+
 
   return (
     <Box>
@@ -45,6 +52,7 @@ export default function YoutubeLink() {
             pr="4.5rem"
             type="text"
             value={link}
+            onKeyDown={handleInputKeyDown}
             onChange={handleChange}
             placeholder="YouTube Link"
           />
