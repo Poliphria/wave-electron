@@ -1,6 +1,6 @@
 import Container from "./Container";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import YouTube from "react-youtube";
 import {
     Flex, HStack, VStack, Spacer, Text, Slider,
@@ -12,6 +12,7 @@ import {
     Input,
     Button
 } from "@chakra-ui/react";
+import { convertSeconds } from "../utils/convertSeconds";
 
 const Transcribe = (props) => {
     // Resize window on navigation
@@ -20,6 +21,14 @@ const Transcribe = (props) => {
     })
 
     const [isPlaying, setIsPlaying] = useState(false)
+    const [totalSeconds, setTotalSeconds] = useState(0)
+    const [start, setStart] = useState()
+    const [end, setEnd] = useState()
+    const [volume, setVolume] = useState()
+    const [speed, setSpeed] = useState()
+    let videoPlayer = null
+
+    const videoRef = useRef()
 
     // Get videoID from URL from input from home page
     const location = useLocation()
@@ -31,6 +40,27 @@ const Transcribe = (props) => {
         width: "350",
     }
 
+    // Get video information and set state variables to correct state
+    const onReady = (event) => {
+        videoPlayer = event.target
+        setTotalSeconds(videoPlayer.getDuration())
+        console.log('player: ' + videoPlayer.toString())
+        setVolume(videoPlayer.getVolume())
+        setSpeed(videoPlayer.getPlaybackRate() * 100)
+        setEnd(videoPlayer.getDuration())
+    }
+
+    const handlePause = () => {
+        setIsPlaying(false)
+    }
+
+    const handlePlay = () => {
+        setIsPlaying(true)
+    }
+
+    const handlePlayButtonClick = () => {
+        isPlaying ? videoPlayer.pauseVideo() : videoPlayer.playVideo()
+    }
 
     const Controls = () => {
         return (
@@ -41,7 +71,7 @@ const Transcribe = (props) => {
                         <Text>Volume</Text>
                     </Box>
 
-                    <Slider defaultValue={30}>
+                    <Slider defaultValue={volume}>
                         <SliderTrack bg='blue.200'>
                             <SliderFilledTrack bg='blue.400' />
                         </SliderTrack>
@@ -54,7 +84,7 @@ const Transcribe = (props) => {
                     <Box width="22%">
                         <Text>Speed</Text>
                     </Box>
-                    <Slider defaultValue={100}>
+                    <Slider defaultValue={speed}>
                         <SliderTrack bg="blue.200">
                             <SliderFilledTrack bg="blue.400" />
                         </SliderTrack>
@@ -66,13 +96,13 @@ const Transcribe = (props) => {
                 <HStack width="80%">
                     <Input defaultValue="0:00" />
                     <Button margin={1}>Now</Button>
-                    <Input defaultValue="4:09" />
+                    <Input defaultValue={convertSeconds(totalSeconds)} />
                     <Button>Now</Button>
                 </HStack>
 
                 {/* Play Button */}
                 <HStack width="80%">
-                    <Button width="100%">{isPlaying ? "Pause" : "Play"}</Button>
+                    <Button onClick={handlePlayButtonClick} width="100%">{isPlaying ? "Pause" : "Play"}</Button>
                 </HStack>
             </VStack>
         )
@@ -81,7 +111,7 @@ const Transcribe = (props) => {
     return (
         <Container justifyContent="center" fontSize="xl">
             <Flex padding={5} dir="row" width="100%">
-                <YouTube videoId={videoID} opts={playerOpt} />
+                <YouTube onPause={handlePause} onPlay={handlePlay} ref={videoRef} videoId={videoID} opts={playerOpt} onReady={onReady} />
                 <Spacer />
                 <Controls />
             </Flex>

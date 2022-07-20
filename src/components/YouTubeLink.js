@@ -3,17 +3,17 @@ import {
   Button,
   InputGroup,
   InputRightElement,
-  Box,
   FormControl,
-  FormErrorMessage
+  FormErrorMessage,
+  Box
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { matchYouTubeURL, getYouTubeID } from "../utils/matchYouTubeURL";
 
 export default function YoutubeLink() {
-  let navigate = useNavigate()
+  let navigate = useNavigate() // navigation function for react router
 
   const [link, setLink] = useState(""); // variable to hold input string
   const handleChange = (event) => setLink(event.target.value);
@@ -26,15 +26,18 @@ export default function YoutubeLink() {
   } = useForm();
 
   const onSubmit = () => {
-    navigate('/transcribe', { state : {
-      videoID: getYouTubeID(link)
-    }})
+    navigate('/transcribe', {
+      state: {
+        videoID: getYouTubeID(link)
+      }
+    })
   }
 
   const handleInputKeyDown = (e) => {
-    console.log('enter key pressed.')
     if (e.key === 'Enter') {
-      handleSubmit()
+      console.log('enter key pressed.')
+      e.preventDefault()
+      handleSubmit(onSubmit)()
     }
   }
 
@@ -47,7 +50,7 @@ export default function YoutubeLink() {
             id="link"
             {...register("link", {
               required: "This is required",
-              validate:  (link) => matchYouTubeURL(link) || "Invalid YouTube Link", // react-hook-form validation needs to be a function and then or'd with err msg
+              validate: (link) => matchYouTubeURL(link) || "Invalid YouTube Link", // react-hook-form validation needs to be a function and then or'd with err msg
             })}
             pr="4.5rem"
             type="text"
