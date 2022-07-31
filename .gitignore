@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# prettier 
+.prettierrc
+
 # testing
 /coverage
 

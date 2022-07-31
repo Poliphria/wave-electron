@@ -54,9 +54,13 @@ app.whenReady().then(() => {
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows() === 0) createWindow()
     })
+
+    // need to set this so renderer process uses https for yt iframe api call
+    app.setAsDefaultProtocolClient('https') 
     
   } catch (err) {
     console.error('err: ', err)
+    app.exit()
   }
 });
 

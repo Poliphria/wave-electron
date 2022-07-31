@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { matchYouTubeURL, getYouTubeID } from "../utils/matchYouTubeURL";
+import { matchYouTubeURL, getYouTubeID } from "../../utils/matchYouTubeURL";
 
 export default function YoutubeLink() {
   let navigate = useNavigate() // navigation function for react router

@@ -3,10 +3,10 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import Container from "./Container";
-import YoutubeLink from "./YouTubeLink";
-import UploadButton from "./UploadButton"
-import ColorModeSwitcher from "./ColorModeSwitcher";
+import Container from "./individual/Container";
+import YoutubeLink from "./individual/YouTubeLink";
+import UploadButton from "./individual/UploadButton"
+import ColorModeSwitcher from "./individual/ColorModeSwitcher";
 
 
 export default function Home() {
