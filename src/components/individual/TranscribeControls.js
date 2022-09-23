@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, createRef, useCallback } from "react";
 import YouTube from "react-youtube";
 import {
     Flex,
@@ -6,6 +6,7 @@ import {
     Spacer
 } from "@chakra-ui/react";
 import Controls from '../individual/Controls'
+import { useMemo } from "react";
 
 const TranscribeControls = (props) => {
     const [playerState, setPlayerState] = useState({
@@ -15,8 +16,59 @@ const TranscribeControls = (props) => {
         speed: 1,
         player: {},
         sliderValue: 100,
-        isPlaying: false
+        isPlaying: false,
+        isLooping: false,
+        loopIntervalID: 0,
     })
+
+    let looper = createRef()
+
+    const loopVars = useMemo(() => ({
+        isLooping: playerState.isLooping,
+        loopIntervalID: playerState.loopIntervalID,
+        end: playerState.end,
+        start: playerState.start
+    }), [playerState.isLooping, playerState.loopIntervalID, playerState.start, playerState.end])
+
+
+    const getCurrentTime = useCallback(() => {
+        return playerState.player.getCurrentTime()
+    }, [playerState.player])
+
+    const seekTo = useCallback((start) => {
+        return playerState.player.seekTo(start, true)
+    }, [playerState.player])
+
+    useEffect(() => {
+        let interval = null
+        if (loopVars.isLooping) {
+            console.log('we are making loop')
+            let currTime = getCurrentTime()
+            // Loop function for the interval. 
+            const timeCountInterval = () => {
+                let oldTime = currTime
+                currTime = getCurrentTime()
+                if (currTime !== oldTime) {
+                    console.log('current time: ', currTime)
+                    console.log('old time: ', oldTime)
+                    if (currTime >= loopVars.end) {
+                        seekTo(loopVars.start, true)
+                    }
+                }
+            }
+            interval = setInterval(timeCountInterval, 1000)
+            console.log('interval: ', interval)
+        } else if (!loopVars.isLooping) {
+            if (interval) {
+                console.log('interval exists, we are clearing')
+                clearInterval(interval)
+            }
+        }
+        return ()=> {
+            clearInterval(interval)
+        }
+
+    }, [loopVars, looper, getCurrentTime, seekTo])
 
 
     const playerOpt = {
@@ -42,53 +94,39 @@ const TranscribeControls = (props) => {
     }
 
     const handlePlaybackRateChange = (event) => {
-        setPlayerState(prev => ({...prev, speed: event.data, sliderValue: event.data * 100}))
+        setPlayerState(prev => ({ ...prev, speed: event.data, sliderValue: event.data * 100 }))
     }
 
-    // Handles state play/pause state change.
-    // 0 = ended
-    // 1 = playing
-    // 2 = paused 
-    // 3 = buffering
-    // 5 = video cued
-    const handleStateChange = (event) => {
-        switch (event.data) {
-            case 0:
-                setPlayerState(prev => ({ ...prev, isPlaying: false }))
-                break;
-            case 1: 
-            setPlayerState(prev => ({ ...prev, isPlaying: true }))
-                break;
-            case 2: 
-            setPlayerState(prev => ({ ...prev, isPlaying: false }))
-            break;
-            default:
-                break;
-        }
+    const handlePlay = () => {
+        setPlayerState(prev => ({ ...prev, isPlaying: true }))
+    }
+
+    const handlePause = () => {
+        setPlayerState(prev => ({ ...prev, isPlaying: false }))
+    }
+
+    const handleEnd = () => {
+        setPlayerState(prev => ({ ...prev, isPlaying: true }))
     }
 
     return (
         <Flex direction="row">
-            <Box width="45%">
+            <Box width="45%" height="45%">
                 <YouTube
                     videoId={props.videoID}
                     opts={playerOpt}
                     onReady={onReady}
                     onPlaybackRateChange={handlePlaybackRateChange}
-                    onStateChange={handleStateChange}
+                    onPause={handlePause}
+                    onPlay={handlePlay}
+                    onEnd={handleEnd}
                 />
             </Box>
 
             <Spacer />
             <Controls
                 setPlayerState={setPlayerState}
-                totalSeconds={playerState.totalSeconds}
-                end={playerState.end}
-                start={playerState.start}
-                sliderValue={playerState.sliderValue}
-                player={playerState.player}
-                speed={playerState.speed}
-                isPlaying={playerState.isPlaying}
+                playerState={playerState}
             />
 
         </Flex>

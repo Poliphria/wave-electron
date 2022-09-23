@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
     Text,
     Slider,
@@ -12,39 +12,53 @@ import {
     Input,
     Button,
     Tooltip,
+    Switch,
+    propNames,
 } from "@chakra-ui/react";
 import { convertSeconds } from "../../utils/convertSeconds";
 
-const Controls = (props) => {
-
-    console.log(props)
-    console.log(window.location.protocol)
-
+const Controls = ({ setPlayerState, playerState }) => {
     const [showTooltip, setShowTooltip] = useState(false)
+    console.log(playerState)
 
     const handleStartNowButton = () => {
-        props.setPlayerState((prev) => ({ ...prev, start: Math.floor(prev.player.getCurrentTime()) }))
+        // Check if start is going to be greater than end
+        let now = playerState.getCurrentTime()
+        if (now > playerState.end) {
+            return 
+        }
+        setPlayerState((prev) => ({ ...prev, start: Math.floor(prev.player.getCurrentTime()) }))
     }
 
     const handleEndNowButton = () => {
-        props.setPlayerState((prev) => ({ ...prev, end: Math.floor(prev.player.getCurrentTime()) }))
+        setPlayerState((prev) => ({ ...prev, end: Math.floor(prev.player.getCurrentTime()) }))
     }
 
     // Handles play/pause button functionality
     const handlePlayPauseClick = () => {
-        if (props.isPlaying) {
-            props.setPlayerState((prev) => ({ ...prev, isPlaying: false }))
-            props.player.pauseVideo()
+        if (playerState.isPlaying) {
+            setPlayerState((prev) => ({ ...prev, isPlaying: false }))
+            playerState.player.pauseVideo()
         } else {
-            props.setPlayerState((prev) => ({ ...prev, isPlaying: true }))
-            props.player.playVideo()
+            setPlayerState((prev) => ({ ...prev, isPlaying: true }))
+            playerState.player.playVideo()
         }
     }
 
     // Sets the playback rate for the player when slider value changes
     const handleRateChangeEnd = (val) => {
-        props.setPlayerState((prev) => ({ ...prev, speed: val }))
-        props.player.setPlaybackRate(val / 100)
+        setPlayerState((prev) => ({ ...prev, speed: val }))
+        playerState.player.setPlaybackRate(val / 100)
+    }
+
+    // Handles switch looping state
+    const handleSwitchChange = (event) => {
+        console.log('Switch clicked currently: ', event.target.checked)
+        setPlayerState((prev) => ({ ...prev, isLooping: event.target.checked }))
+    }
+
+    const handlePlayLoopClick = () => {
+        playerState.player.seekTo(playerState.start, true)
     }
 
     const sliderLabels = [25, 50, 75, 100]
@@ -64,12 +78,12 @@ const Controls = (props) => {
                     <Text>Speed</Text>
                 </Box>
                 <Slider
-                    value={props.sliderValue}
+                    value={playerState.sliderValue}
                     min={25}
                     max={100}
                     step={5}
                     onChangeEnd={(val) => handleRateChangeEnd(val)}
-                    onChange={(v) => props.setPlayerState(prev => ({ ...prev, sliderValue: v }))}
+                    onChange={(v) => setPlayerState(prev => ({ ...prev, sliderValue: v }))}
                     onMouseEnter={() => setShowTooltip(true)}
                     onMouseLeave={() => setShowTooltip(false)}
                 >
@@ -90,7 +104,7 @@ const Controls = (props) => {
                         color='white'
                         placement='top'
                         isOpen={showTooltip}
-                        label={`${props.sliderValue}%`}
+                        label={`${playerState.sliderValue}%`}
                     >
                         <SliderThumb />
                     </Tooltip>
@@ -100,15 +114,18 @@ const Controls = (props) => {
 
             {/* Start/End Values */}
             <HStack width="80%">
-                <Input value={convertSeconds(props.start)} readOnly/>
+                <Text>Loop:</Text>
+                <Switch id="loop" onChange={handleSwitchChange} />
+                <Input value={convertSeconds(playerState.start)} readOnly /> {/* Start Button */}
                 <Button onClick={handleStartNowButton}>Now</Button>
-                <Input value={convertSeconds(props.end)} readOnly/>
+                <Input value={convertSeconds(playerState.end)} readOnly /> {/* End Button */}
                 <Button onClick={handleEndNowButton}>Now</Button>
             </HStack>
 
-            {/* Play Button */}
+            {/* Play Buttons */}
             <HStack width="80%">
-                <Button onClick={handlePlayPauseClick} width="100%">{props.isPlaying ? "Pause" : "Play"}</Button>
+                <Button onClick={handlePlayLoopClick} width="30%">Loop Start</Button>
+                <Button onClick={handlePlayPauseClick} width="100%">{playerState.isPlaying ? "Pause" : "Play"}</Button>
             </HStack>
         </VStack>
     )

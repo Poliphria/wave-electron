@@ -8,7 +8,7 @@ const Transcribe = (props) => {
     // Resize window on navigation
     useEffect(() => {
         window.resizeTo(1080, 700)
-    })
+    },[])
 
     // Get videoID from URL from input from home page
     const location = useLocation()
