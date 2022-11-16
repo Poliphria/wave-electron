@@ -13,7 +13,6 @@ import {
     Button,
     Tooltip,
     Switch,
-    propNames,
 } from "@chakra-ui/react";
 import { convertSeconds } from "../../utils/convertSeconds";
 
