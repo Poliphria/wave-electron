@@ -22,7 +22,7 @@ const Controls = ({ setPlayerState, playerState }) => {
 
     const handleStartNowButton = () => {
         // Check if start is going to be greater than end
-        let now = playerState.getCurrentTime()
+        let now = playerState.player.getCurrentTime()
         if (now > playerState.end) {
             return 
         }
