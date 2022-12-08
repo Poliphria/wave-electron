@@ -1,13 +1,14 @@
-import Container from "./individual/Container";
+import Container from "../individual/Container";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Flex, Box } from "@chakra-ui/react";
-import TranscribeControls from "./individual/TranscribeControls";
+import TranscribeControls from "../individual/TranscribeControls";
 
-const Transcribe = (props) => {
+const YouTube = (props) => {
     // Resize window on navigation
     useEffect(() => {
         window.resizeTo(1080, 700)
+        window.api.centerWindow()
     },[])
 
     // Get videoID from URL from input from home page
@@ -25,4 +26,4 @@ const Transcribe = (props) => {
     )
 }
 
-export default Transcribe
+export default YouTube

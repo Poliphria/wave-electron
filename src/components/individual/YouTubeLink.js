@@ -21,7 +21,7 @@ export default function YoutubeLink() {
       }}
       onSubmit={(values) => {
         console.log(values)
-        navigate('/transcribe', {
+        navigate('/transcribe/youtube', {
           state: {
             videoID: getYouTubeID(values.link)
           }
