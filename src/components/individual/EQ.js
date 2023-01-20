@@ -1,11 +1,5 @@
-import {
-  Text,
-  Flex,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-} from '@chakra-ui/react';
+import { Text, Flex, Box } from '@chakra-ui/react';
+import EQSlider from './EQSlider';
 
 const EQ = ({ wavesurferRef }) => {
   console.log('FROM EQ: ', wavesurferRef);
@@ -64,28 +58,16 @@ const EQ = ({ wavesurferRef }) => {
   wavesurferRef.current.backend.setFilters(filters);
 
   let filterSliders = filters.map((filter, index) => {
-    const handleChange = () => {};
     return (
-      <Slider>
-        <Slider
-          aria-label="slider-ex-3"
-          defaultValue={30}
-          orientation="vertical"
-          minH="32"
-          key={index}
-        >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
-      </Slider>
+      <Box key={index}>
+        <EQSlider filter={filter} />
+      </Box>
     );
   });
 
   return (
-    <Flex width="100%" justify="space-around">
-      <Text width={10} p={2} alignSelf="self-end">
+    <Flex width="100%" justify="space-around" pt={4}>
+      <Text flexShrink="2" justifySelf="flex-start" alignSelf="flex-end">
         Hz
       </Text>
       {filterSliders}

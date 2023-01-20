@@ -107,7 +107,7 @@ const WS = ({ fileContents }) => {
         </Box>
       </Flex>
       <Box width="100%" pt={8}>
-        <Accordion defaultIndex={[0]} allowMultiple>
+        <Accordion allowMultiple allowToggle>
           <AccordionItem>
             <h2>
               <AccordionButton>
