@@ -1,80 +1,153 @@
-import { Flex, IconButton, Text } from "@chakra-ui/react"
-import { useEffect, useRef, useState } from "react"
-import { FaPlay } from "react-icons/fa"
-import ws from "wavesurfer.js"
+import {
+  Flex,
+  IconButton,
+  Box,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'react';
+import { FaPause, FaPlay } from 'react-icons/fa';
+import ws from 'wavesurfer.js';
+import CursorPlugin from 'wavesurfer.js/src/plugin/cursor';
+import EQ from './EQ';
 
+const WS = ({ fileContents }) => {
+  // player state
+  const [playerState, setPlayerState] = useState({
+    isPlaying: false,
+    isRefReady: false,
+  });
 
-const WaveSurfer = ({ fileContents }) => {
-    // player state
-    const [playerState, setPlayerState] = useState({
-        isPlaying: false
-    })
+  // reference for container wavetable to be held in
+  const waveformRef = useRef(null);
 
-    // reference for container wavetable to be held in
-    const waveformRef = useRef(null)
+  // reference to wavesurfer object itself
+  const wavesurfer = useRef(null);
 
-    // reference to wavesurfer object itself
-    const wavesurfer = useRef(null)
-    console.log("ws contents: ", fileContents)
+  useEffect(() => {
+    // wavesurfer options
+    let wsOptions = {
+      container: waveformRef.current,
+      plugins: [
+        CursorPlugin.create({
+          showTime: true,
+          opacity: 1,
+          customShowTimeStyle: {
+            'background-color': '#000',
+            color: '#fff',
+            padding: '2px',
+            'font-size': '12px',
+          },
+        }),
+      ],
+      barWidth: 3,
+      scrollParent: true,
+      barHeight: 1,
+      waveColor: '#ddd',
+      responsive: true,
+      barGap: 2,
+      barRadius: 3,
+      cursorWidth: 3,
+      backend: 'MediaElementWebAudio',
+    };
 
-    useEffect(() => {
-        // wavesurfer options
-        let wsOptions = {
-            container: waveformRef.current,
-            backend: 'MediaElement',
-            barWidth: 2,
-            barHeight: 1,
-            barGap: 2,
-            barRadius: 3,
-            cursorWidth: 3,
-            scrollParent: true,
-        }
+    wavesurfer.current = ws.create(wsOptions);
 
-        wavesurfer.current = ws.create(wsOptions)
+    // Create URL for file to create an audio object that can be loaded into
+    // wavesurfer
+    let blob = new Blob([fileContents]);
+    let audio = new Audio();
+    audio.src = URL.createObjectURL(blob);
+    wavesurfer.current.load(audio);
+    wavesurfer.current.on('finish', () => {
+      setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    });
 
-        // convert file contents to blob. ArrayBuffer (UINT8) to Blob
-        // const audioBlob = new Blob([new Uint8Array(fileContents)])
+    wavesurfer.current.on('error', msg => {
+      console.log('Error: ', msg);
+    });
 
-        // create an object audio object and create URL from that
-        // use this URL to load it into WaveSurfer
-        // console.log("This is supposed to be a blob: ", audioBlob)
-        // let audio = new Audio()
-        // audio.src = URL.createObjectURL(fileContents)
-        // console.log("Audio object: ", audio)
-        
-        console.log(" This is the current file contents as an ArrayBuffer: ", fileContents)
-        let blob = new Blob([fileContents])
-        let audio = new Audio()
-        audio.src = URL.createObjectURL(blob)
-        console.log('This is the audio js object: ', audio)
-        console.log('This is the blob: ', blob)
+    wavesurfer.current.on('ready', () => {
+      console.log('WS: ', wavesurfer.current);
+      setPlayerState(prev => ({ ...prev, isRefReady: true }));
+    });
 
-        wavesurfer.current.load(audio)
-        console.log("wavesurfer object: ", wavesurfer.current)
+    // Destroy previous wavesurfer instance on change.
+    return () => {
+      wavesurfer.current.destroy();
+    };
+  }, [fileContents, waveformRef]);
 
-        return () => {
-            wavesurfer.current.destroy()
-        }
-    }, [fileContents])
-
-    // Click event function pauses/plays wavesurfer player
-    const handleClick = (event) => {
-        if (playerState.isPlaying) {
-            wavesurfer.current.pause()
-            setPlayerState(prev => ({...prev, isPlaying: false}))
-        } else {
-            wavesurfer.current.play()
-            setPlayerState(prev => ({...prev, isPlaying: true}))
-        }
+  // Click event function pauses/plays wavesurfer player
+  const handleClick = event => {
+    if (playerState.isPlaying) {
+      wavesurfer.current.pause();
+      setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    } else {
+      wavesurfer.current.play();
+      setPlayerState(prev => ({ ...prev, isPlaying: true }));
     }
+  };
 
-    return (
-        <Flex direction="row" justify="center" alignItems="center" width="100%">
-            <IconButton icon={<FaPlay />} onClick={handleClick}/>
-            <div ref={waveformRef} height="100%" width="90%" />
-            <Text>Test</Text>
-        </Flex>
-    )
-}
+  return (
+    <Flex width="100%" height="100^%" alignItems="center" flexDir="column">
+      <Flex width="100%" alignItems="center" justifyContent="center">
+        <IconButton
+          borderRadius="70%"
+          icon={playerState.isPlaying ? <FaPause /> : <FaPlay />}
+          onClick={handleClick}
+          size="lg"
+          mr={8}
+        />
+        <Box width="100%">
+          <div ref={waveformRef} id="waveform"></div>
+        </Box>
+      </Flex>
+      <Box width="100%" pt={8}>
+        <Accordion defaultIndex={[0]} allowMultiple>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box
+                  fontSize="lg"
+                  as="span"
+                  flex="1"
+                  fontWeight="bold"
+                  textAlign="left"
+                >
+                  Player/WaveForm Options
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel></AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box
+                  fontSize="lg"
+                  as="span"
+                  fontWeight="bold"
+                  flex="1"
+                  textAlign="left"
+                >
+                  EQ
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </Box>
+    </Flex>
+  );
+};
 
-export default WaveSurfer
+export default WS;
