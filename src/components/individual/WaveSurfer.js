@@ -1,18 +1,11 @@
-import {
-  Flex,
-  IconButton,
-  Box,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react';
+import { Flex, IconButton, Box, Accordion } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import ws from 'wavesurfer.js';
 import CursorPlugin from 'wavesurfer.js/src/plugin/cursor';
+import WaveSurferOption from './WaveSurferOption';
 import EQ from './EQ';
+import PlayerOptions from './PlayerOptions';
 
 const WS = ({ fileContents }) => {
   // player state
@@ -95,6 +88,7 @@ const WS = ({ fileContents }) => {
   return (
     <Flex width="100%" height="100^%" alignItems="center" flexDir="column">
       <Flex width="100%" alignItems="center" justifyContent="center">
+        {/* Play/Pause Button */}
         <IconButton
           borderRadius="70%"
           icon={playerState.isPlaying ? <FaPause /> : <FaPlay />}
@@ -102,48 +96,19 @@ const WS = ({ fileContents }) => {
           size="lg"
           mr={8}
         />
+        {/* Waveform div reference */}
         <Box width="100%">
           <div ref={waveformRef} id="waveform"></div>
         </Box>
       </Flex>
       <Box width="100%" pt={8}>
         <Accordion allowMultiple allowToggle>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box
-                  fontSize="lg"
-                  as="span"
-                  flex="1"
-                  fontWeight="bold"
-                  textAlign="left"
-                >
-                  Player/WaveForm Options
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel></AccordionPanel>
-          </AccordionItem>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box
-                  fontSize="lg"
-                  as="span"
-                  fontWeight="bold"
-                  flex="1"
-                  textAlign="left"
-                >
-                  EQ
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel>
-              {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
-            </AccordionPanel>
-          </AccordionItem>
+          <WaveSurferOption title="Player Controls">
+            <PlayerOptions />
+          </WaveSurferOption>
+          <WaveSurferOption title="EQ">
+            {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
+          </WaveSurferOption>
         </Accordion>
       </Box>
     </Flex>

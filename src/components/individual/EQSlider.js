@@ -5,7 +5,6 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Text,
-  Tooltip,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 const MAX_SLIDER_VALUE = 40;
