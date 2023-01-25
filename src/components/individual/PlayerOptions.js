@@ -11,19 +11,38 @@ import {
 } from '@chakra-ui/react';
 import { FaBackward, FaForward, FaStepBackward, FaStop } from 'react-icons/fa';
 
-const PlayerOptions = () => {
+const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
   const labelStyles = {
     mt: '6',
     fontSize: '0.8rem',
   };
+
+  const handleStopButton = () => {
+    wavesurferRef.current.stop();
+    wavesurferRef.current.seekAndCenter(0);
+    setPlayerState(prev => ({ ...prev, isPlaying: false }));
+  };
+
+  const handleStepBack = () => {
+    wavesurferRef.current.seekTo(0);
+  };
+
+  const handleSeekBackwards = () => {
+    wavesurferRef.current.skipBackward(5);
+  };
+
+  const handleSeekForwards = () => {
+    wavesurferRef.current.skipForward(5);
+  };
+
   return (
     <VStack p={2} width="100%" spacing={12}>
       {/* Player Control Buttons */}
-      <Flex flexDir="row" justifyContent="space-evenly" pt={4} width="100%">
-        <IconButton icon={<FaStop />} />
-        <IconButton icon={<FaStepBackward />} />
-        <IconButton icon={<FaBackward />} />
-        <IconButton icon={<FaForward />} />
+      <Flex flexDir="row" pt={12} justifyContent="space-evenly" width="100%">
+        <IconButton onClick={handleStopButton} icon={<FaStop />} />
+        <IconButton onClick={handleStepBack} icon={<FaStepBackward />} />
+        <IconButton onClick={handleSeekBackwards} icon={<FaBackward />} />
+        <IconButton onClick={handleSeekForwards} icon={<FaForward />} />
       </Flex>
       {/* Stereo Panner Slider */}
       <Flex flexDir="row" width="100%">

@@ -104,7 +104,13 @@ const WS = ({ fileContents }) => {
       <Box width="100%" pt={8}>
         <Accordion allowMultiple allowToggle>
           <WaveSurferOption title="Player Controls">
-            <PlayerOptions />
+            {playerState.isRefReady && (
+              <PlayerOptions
+                setPlayerState={setPlayerState}
+                state={playerState}
+                wavesurferRef={wavesurfer}
+              />
+            )}
           </WaveSurferOption>
           <WaveSurferOption title="EQ">
             {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
