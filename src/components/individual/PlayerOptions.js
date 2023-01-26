@@ -38,7 +38,7 @@ const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
   return (
     <VStack p={2} width="100%" spacing={12}>
       {/* Player Control Buttons */}
-      <Flex flexDir="row" pt={12} justifyContent="space-evenly" width="100%">
+      <Flex flexDir="row" pt={8} justifyContent="space-around" width="100%">
         <IconButton onClick={handleStopButton} icon={<FaStop />} />
         <IconButton onClick={handleStepBack} icon={<FaStepBackward />} />
         <IconButton onClick={handleSeekBackwards} icon={<FaBackward />} />
@@ -71,29 +71,6 @@ const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
           <SliderThumb />
         </Slider>
       </Flex>
-      {/* Channel Volume Sliders */}
-      <Flex width="100%">
-        {/* Right Channel Slider */}
-        <VStack flexGrow="1" spacing={6} pr={4}>
-          <Text>Right Channel Volume</Text>
-          <Slider aria-label="right-volume-slider" defaultValue={100}>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </VStack>
-        {/* Left Channel Slider */}
-        <VStack flexGrow="1" spacing={6} pl={4}>
-          <Text>Left Channel Volume</Text>
-          <Slider aria-label="left-volume-slider" defaultValue={100}>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </VStack>
-      </Flex>
       {/* Speed Slider */}
       <Flex flexDir="row" width="100%" pt={4}>
         <Text width="15%" pr={4}>
@@ -120,6 +97,47 @@ const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
           </SliderTrack>
           <SliderThumb />
         </Slider>
+      </Flex>
+      {/* Volume Slider */}
+      <Flex flexDir="row" width="100%">
+        <Text width="15%" pr={4}>
+          Volume
+        </Text>
+        <Slider
+          flexGrow="3"
+          aria-label="volume-slider"
+          defaultValue={100}
+          max={100}
+          min={0}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </Flex>
+      {/* Channel Volume Sliders */}
+      <Flex width="100%">
+        {/* Right Channel Slider */}
+        <VStack flexGrow="1" spacing={6} pr={4}>
+          <Text>Right Channel Volume</Text>
+          <Slider aria-label="right-volume-slider" defaultValue={100}>
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+        </VStack>
+        {/* Left Channel Slider */}
+        <VStack flexGrow="1" spacing={6} pl={4}>
+          <Text>Left Channel Volume</Text>
+          <Slider aria-label="left-volume-slider" defaultValue={100}>
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+        </VStack>
       </Flex>
     </VStack>
   );
