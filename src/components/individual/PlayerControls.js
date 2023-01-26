@@ -9,12 +9,34 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FaBackward, FaForward, FaStepBackward, FaStop } from 'react-icons/fa';
+import { useEffect } from 'react';
+import {
+  FaBackward,
+  FaForward,
+  FaPause,
+  FaPlay,
+  FaStepBackward,
+  FaStop,
+} from 'react-icons/fa';
 
-const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
+const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
+  // Styles for slider labels
   const labelStyles = {
     mt: '6',
     fontSize: '0.8rem',
+  };
+
+  console.log('From player options: ', wavesurferRef.current);
+
+  // Event handlers
+  const handlePlayButton = event => {
+    if (playerState.isPlaying) {
+      wavesurferRef.current.pause();
+      setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    } else {
+      wavesurferRef.current.play();
+      setPlayerState(prev => ({ ...prev, isPlaying: true }));
+    }
   };
 
   const handleStopButton = () => {
@@ -44,10 +66,27 @@ const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
     <VStack p={2} width="100%" spacing={12}>
       {/* Player Control Buttons */}
       <Flex flexDir="row" pt={8} justifyContent="space-around" width="100%">
-        <IconButton onClick={handleStopButton} icon={<FaStop />} />
-        <IconButton onClick={handleStepBack} icon={<FaStepBackward />} />
-        <IconButton onClick={handleSeekBackwards} icon={<FaBackward />} />
-        <IconButton onClick={handleSeekForwards} icon={<FaForward />} />
+        <IconButton
+          size="lg"
+          icon={playerState.isPlaying ? <FaPause /> : <FaPlay />}
+          onClick={handlePlayButton}
+        />
+        <IconButton size="lg" onClick={handleStopButton} icon={<FaStop />} />
+        <IconButton
+          size="lg"
+          onClick={handleStepBack}
+          icon={<FaStepBackward />}
+        />
+        <IconButton
+          size="lg"
+          onClick={handleSeekBackwards}
+          icon={<FaBackward />}
+        />
+        <IconButton
+          size="lg"
+          onClick={handleSeekForwards}
+          icon={<FaForward />}
+        />
       </Flex>
       {/* Stereo Panner Slider */}
       <Flex flexDir="row" width="100%">
@@ -60,6 +99,7 @@ const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
           defaultValue={0}
           max={100}
           min={-100}
+          step={1}
         >
           <SliderMark value={-100} {...labelStyles}>
             L
@@ -123,30 +163,8 @@ const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
         </Slider>
       </Flex>
       {/* Channel Volume Sliders */}
-      <Flex width="100%">
-        {/* Right Channel Slider */}
-        <VStack flexGrow="1" spacing={6} pr={4}>
-          <Text>Right Channel Volume</Text>
-          <Slider aria-label="right-volume-slider" defaultValue={100}>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </VStack>
-        {/* Left Channel Slider */}
-        <VStack flexGrow="1" spacing={6} pl={4}>
-          <Text>Left Channel Volume</Text>
-          <Slider aria-label="left-volume-slider" defaultValue={100}>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </VStack>
-      </Flex>
     </VStack>
   );
 };
 
-export default PlayerOptions;
+export default PlayerControls;
