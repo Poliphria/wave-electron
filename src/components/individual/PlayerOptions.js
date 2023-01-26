@@ -77,7 +77,7 @@ const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
         </Slider>
       </Flex>
       {/* Speed Slider */}
-      <Flex flexDir="row" width="100%" pt={4}>
+      <Flex flexDir="row" width="100%">
         <Text width="15%" pr={4}>
           Speed
         </Text>
