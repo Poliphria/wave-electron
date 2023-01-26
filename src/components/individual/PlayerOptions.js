@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { FaBackward, FaForward, FaStepBackward, FaStop } from 'react-icons/fa';
 
-const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
+const PlayerOptions = ({ wavesurferRef, setPlayerState }) => {
   const labelStyles = {
     mt: '6',
     fontSize: '0.8rem',
@@ -33,6 +33,11 @@ const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
 
   const handleSeekForwards = () => {
     wavesurferRef.current.skipForward(5);
+  };
+
+  const handleVolumeChange = value => {
+    let wsValue = value / 100;
+    wavesurferRef.current.setVolume(wsValue);
   };
 
   return (
@@ -107,6 +112,7 @@ const PlayerOptions = ({ wavesurferRef, playerState, setPlayerState }) => {
           flexGrow="3"
           aria-label="volume-slider"
           defaultValue={100}
+          onChange={handleVolumeChange}
           max={100}
           min={0}
         >
