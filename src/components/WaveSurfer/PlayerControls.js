@@ -24,13 +24,13 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
   // Styles for slider labels
   const labelStyles = {
     mt: '6',
-    fontSize: '0.8rem',
+    ml: '-1.5',
+    fontSize: 'sm',
   };
 
-  // Markers for Stereo Slider
   console.log('From player options: ', wavesurferRef.current);
 
-  // Event handlers
+  // Button event handlers
   const handlePlayButton = () => {
     if (playerState.isPlaying) {
       wavesurferRef.current.pause();
@@ -59,13 +59,14 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
     wavesurferRef.current.skipForward(5);
   };
 
+  // Slider event handlers
   const handleVolumeChange = value => {
     let wsValue = value / 100;
     wavesurferRef.current.setVolume(wsValue);
   };
 
   return (
-    <VStack p={2} width="100%" spacing={12}>
+    <VStack p={2} width="100%" spacing={16}>
       {/* Player Control Buttons */}
       <Flex flexDir="row" pt={8} justifyContent="space-around" width="100%">
         <WaveSurferControlButton
@@ -132,6 +133,7 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
         min={0}
         max={100}
         defaultValue={100}
+        handleChange={handleVolumeChange}
       />
     </VStack>
   );
