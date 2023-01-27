@@ -9,7 +9,6 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import {
   FaBackward,
   FaForward,
@@ -19,6 +18,7 @@ import {
   FaStop,
 } from 'react-icons/fa';
 import WaveSurferControlButton from './WaveSurferControlButton';
+import OptionSlider from './OptionSlider';
 
 const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
   // Styles for slider labels
@@ -27,10 +27,11 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
     fontSize: '0.8rem',
   };
 
+  // Markers for Stereo Slider
   console.log('From player options: ', wavesurferRef.current);
 
   // Event handlers
-  const handlePlayButton = event => {
+  const handlePlayButton = () => {
     if (playerState.isPlaying) {
       wavesurferRef.current.pause();
       setPlayerState(prev => ({ ...prev, isPlaying: false }));
@@ -89,80 +90,49 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
         />
       </Flex>
       {/* Stereo Panner Slider */}
-      <Flex flexDir="row" width="100%">
-        <Text width="15%" pr={4}>
-          Stereo Panner
-        </Text>
-        <Slider
-          flexGrow="3"
-          aria-label="stereo-panner-slider"
-          defaultValue={0}
-          max={100}
-          min={-100}
-          step={1}
-        >
-          <SliderMark value={-100} {...labelStyles}>
-            L
-          </SliderMark>
-          <SliderMark value={0} {...labelStyles}>
-            M
-          </SliderMark>
-          <SliderMark value={100} {...labelStyles}>
-            R
-          </SliderMark>
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
-      </Flex>
-      {/* Speed Slider */}
-      <Flex flexDir="row" width="100%">
-        <Text width="15%" pr={4}>
-          Speed
-        </Text>
-        <Slider
-          flexGrow="3"
-          aria-label="stereo-panner-slider"
-          defaultValue={100}
-          max={100}
-          min={25}
-        >
-          <SliderMark value={25} {...labelStyles}>
-            25%
-          </SliderMark>
-          <SliderMark value={50} {...labelStyles}>
-            50%
-          </SliderMark>
-          <SliderMark value={75} {...labelStyles}>
-            75%
-          </SliderMark>
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
-      </Flex>
+      <OptionSlider
+        text="Stereo Panner"
+        ariaLabel="stereo-panner-slider"
+        min={-100}
+        max={100}
+        defaultValue={0}
+      >
+        <SliderMark value={-100} {...labelStyles}>
+          L
+        </SliderMark>
+        <SliderMark value={0} {...labelStyles}>
+          M
+        </SliderMark>
+        <SliderMark value={100} {...labelStyles}>
+          R
+        </SliderMark>
+      </OptionSlider>
+      ;{/* Speed Slider */}
+      <OptionSlider
+        text="Speed"
+        ariaLabel="speed-slider"
+        min={25}
+        max={100}
+        defaultValue={100}
+      >
+        <SliderMark value={25} {...labelStyles}>
+          25%
+        </SliderMark>
+        <SliderMark value={50} {...labelStyles}>
+          50%
+        </SliderMark>
+        <SliderMark value={75} {...labelStyles}>
+          75%
+        </SliderMark>
+      </OptionSlider>
       {/* Volume Slider */}
-      <Flex flexDir="row" width="100%">
-        <Text width="15%" pr={4}>
-          Volume
-        </Text>
-        <Slider
-          flexGrow="3"
-          aria-label="volume-slider"
-          defaultValue={100}
-          onChange={handleVolumeChange}
-          max={100}
-          min={0}
-        >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
-      </Flex>
-      {/* Channel Volume Sliders */}
+      <OptionSlider
+        text="Volume"
+        ariaLabel="volume-slider"
+        min={0}
+        max={100}
+        defaultValue={100}
+      />
     </VStack>
   );
 };

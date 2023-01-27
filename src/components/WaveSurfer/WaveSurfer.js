@@ -1,12 +1,5 @@
-import {
-  Flex,
-  IconButton,
-  Box,
-  Accordion,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Flex, Box, Accordion } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
-import { FaPause, FaPlay } from 'react-icons/fa';
 import ws from 'wavesurfer.js';
 import CursorPlugin from 'wavesurfer.js/src/plugin/cursor';
 import WaveSurferOption from './WaveSurferOption';
@@ -20,14 +13,13 @@ const WS = ({ fileContents }) => {
     isRefReady: false,
   });
 
-  const progressWaveColor = useColorModeValue('#2B6CB0', '#48BB78');
-
   // reference for container wavetable to be held in
   const waveformRef = useRef(null);
 
   // reference to wavesurfer object itself
   const wavesurfer = useRef(null);
 
+  // Create WaveSurfer instance
   useEffect(() => {
     // wavesurfer options
     let wsOptions = {
@@ -48,7 +40,7 @@ const WS = ({ fileContents }) => {
       scrollParent: true,
       barHeight: 1,
       waveColor: '#A0AEC0',
-      progressColor: progressWaveColor,
+      progressColor: '#4880C8',
       responsive: true,
       barGap: 2,
       barRadius: 3,
@@ -83,28 +75,9 @@ const WS = ({ fileContents }) => {
     };
   }, [fileContents, waveformRef]);
 
-  // Click event function pauses/plays wavesurfer player
-  const handleClick = event => {
-    if (playerState.isPlaying) {
-      wavesurfer.current.pause();
-      setPlayerState(prev => ({ ...prev, isPlaying: false }));
-    } else {
-      wavesurfer.current.play();
-      setPlayerState(prev => ({ ...prev, isPlaying: true }));
-    }
-  };
-
   return (
     <Flex width="100%" height="100^%" alignItems="center" flexDir="column">
       <Flex width="100%" alignItems="center" justifyContent="center">
-        {/* Play/Pause Button */}
-        {/* <IconButton
-          borderRadius="70%"
-          icon={playerState.isPlaying ? <FaPause /> : <FaPlay />}
-          onClick={handleClick}
-          size="lg"
-          mr={8}
-        /> */}
         {/* Waveform div reference */}
         <Box width="100%">
           <div ref={waveformRef} id="waveform"></div>
@@ -112,6 +85,7 @@ const WS = ({ fileContents }) => {
       </Flex>
       <Box width="100%" pt={8}>
         <Accordion defaultIndex={[0]} allowMultiple allowToggle>
+          {/* Player Options */}
           <WaveSurferOption title="Player Controls">
             {playerState.isRefReady && (
               <PlayerControls
@@ -121,6 +95,7 @@ const WS = ({ fileContents }) => {
               />
             )}
           </WaveSurferOption>
+          {/* EQ */}
           <WaveSurferOption title="EQ">
             {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
           </WaveSurferOption>
