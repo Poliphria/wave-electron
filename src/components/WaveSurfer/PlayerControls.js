@@ -18,6 +18,7 @@ import {
   FaStepBackward,
   FaStop,
 } from 'react-icons/fa';
+import WaveSurferControlButton from './WaveSurferControlButton';
 
 const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
   // Styles for slider labels
@@ -66,25 +67,24 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
     <VStack p={2} width="100%" spacing={12}>
       {/* Player Control Buttons */}
       <Flex flexDir="row" pt={8} justifyContent="space-around" width="100%">
-        <IconButton
-          size="lg"
+        <WaveSurferControlButton
           icon={playerState.isPlaying ? <FaPause /> : <FaPlay />}
-          onClick={handlePlayButton}
+          handleClick={handlePlayButton}
         />
-        <IconButton size="lg" onClick={handleStopButton} icon={<FaStop />} />
-        <IconButton
-          size="lg"
-          onClick={handleStepBack}
+        <WaveSurferControlButton
+          handleClick={handleStopButton}
+          icon={<FaStop />}
+        />
+        <WaveSurferControlButton
+          handleClick={handleStepBack}
           icon={<FaStepBackward />}
         />
-        <IconButton
-          size="lg"
-          onClick={handleSeekBackwards}
+        <WaveSurferControlButton
+          handleClick={handleSeekBackwards}
           icon={<FaBackward />}
         />
-        <IconButton
-          size="lg"
-          onClick={handleSeekForwards}
+        <WaveSurferControlButton
+          handleClick={handleSeekForwards}
           icon={<FaForward />}
         />
       </Flex>

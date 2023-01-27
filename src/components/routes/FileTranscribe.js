@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ColorModeSwitcher from '../individual/ColorModeSwitcher';
-import WaveSurfer from '../individual/WaveSurfer';
+import WaveSurfer from '../WaveSurfer/WaveSurfer';
 
 const FileTranscribe = props => {
   // Resize window on initial navigation

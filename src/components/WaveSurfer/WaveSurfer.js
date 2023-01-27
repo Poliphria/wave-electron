@@ -1,4 +1,10 @@
-import { Flex, IconButton, Box, Accordion } from '@chakra-ui/react';
+import {
+  Flex,
+  IconButton,
+  Box,
+  Accordion,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import ws from 'wavesurfer.js';
@@ -13,6 +19,8 @@ const WS = ({ fileContents }) => {
     isPlaying: false,
     isRefReady: false,
   });
+
+  const progressWaveColor = useColorModeValue('#2B6CB0', '#48BB78');
 
   // reference for container wavetable to be held in
   const waveformRef = useRef(null);
@@ -39,7 +47,8 @@ const WS = ({ fileContents }) => {
       barWidth: 3,
       scrollParent: true,
       barHeight: 1,
-      waveColor: '#ddd',
+      waveColor: '#A0AEC0',
+      progressColor: progressWaveColor,
       responsive: true,
       barGap: 2,
       barRadius: 3,
