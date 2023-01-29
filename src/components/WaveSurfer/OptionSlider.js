@@ -10,45 +10,61 @@ import {
 
 import { useState } from 'react';
 
-const OptionSlider = props => {
-  const [sliderValue, setSliderValue] = useState(props.defaultValue);
+const OptionSlider = ({
+  defaultValue,
+  handleChange,
+  ariaLabel,
+  children,
+  text,
+  max,
+  min,
+  step = 1,
+  ...props
+}) => {
+  const [sliderValue, setSliderValue] = useState(defaultValue);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // const handleChange = value => {
-  //   setSliderValue(value);
-  //   props.handleChange(value);
-  // };
+  const customChange = value => {
+    setSliderValue(value);
+    handleChange(value);
+  };
+
+  console.log('has tooltip: ', props.hasTooltip);
 
   return (
     <Flex flexDir="row" width="100%">
       <Text width="15%" pr={4}>
-        {props.text}
+        {text}
       </Text>
       <Slider
         flexGrow="3"
-        aria-label={props.ariaLabel}
-        defaultValue={props.defaultValue}
-        max={props.max}
-        min={props.min}
-        step={props.step ? props.step : 1}
-        // onChange={handleChange}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
+        aria-label={ariaLabel}
+        defaultValue={defaultValue}
+        max={max}
+        min={min}
+        step={step ? step : 1}
+        onChange={customChange}
+        onMouseEnter={props.hasTooltip ? () => setShowTooltip(true) : null}
+        onMouseLeave={props.hasTooltip ? () => setShowTooltip(false) : null}
       >
-        {props.children}
+        {children}
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
-        <Tooltip
-          hasArrow
-          bg="#4880C8"
-          color="white"
-          placement="top"
-          isOpen={showTooltip}
-          label={`${sliderValue}%`}
-        >
+        {props.hasTooltip ? (
+          <Tooltip
+            hasArrow
+            bg="#4880C8"
+            color="white"
+            placement="top"
+            isOpen={showTooltip}
+            label={`${sliderValue}%`}
+          >
+            <SliderThumb />
+          </Tooltip>
+        ) : (
           <SliderThumb />
-        </Tooltip>
+        )}
       </Slider>
     </Flex>
   );

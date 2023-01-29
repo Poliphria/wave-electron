@@ -8,17 +8,16 @@ import PlayerControls from './PlayerControls';
 
 const WS = ({ fileContents }) => {
   // player state
-  const [playerState, setPlayerState] = useState({
-    isPlaying: false,
-    isRefReady: false,
-  });
-
+  const [isRefReady, setIsRefReady] = useState(false);
   // reference for container wavetable to be held in
   const waveformRef = useRef(null);
 
   // reference to wavesurfer object itself
   const wavesurfer = useRef(null);
 
+  let eqFilters = useRef();
+  let leftGainNode = useRef();
+  let rightGainNode = useRef();
   // Create WaveSurfer instance
   useEffect(() => {
     // wavesurfer options
@@ -56,17 +55,91 @@ const WS = ({ fileContents }) => {
     let audio = new Audio();
     audio.src = URL.createObjectURL(blob);
     wavesurfer.current.load(audio);
-    wavesurfer.current.on('finish', () => {
-      setPlayerState(prev => ({ ...prev, isPlaying: false }));
+
+    // Channel Volume Filters
+    const channelSplitterNode =
+      wavesurfer.current.backend.ac.createChannelSplitter(2);
+    const channelMergerNode =
+      wavesurfer.current.backend.ac.createChannelMerger(2);
+    leftGainNode.current = wavesurfer.current.backend.ac.createGain();
+    rightGainNode.current = wavesurfer.current.backend.ac.createGain();
+
+    channelSplitterNode.connect(leftGainNode.current, 0);
+    leftGainNode.current.gain.value = 1;
+
+    channelSplitterNode.connect(rightGainNode.current, 1);
+    rightGainNode.current.gain.value = 1;
+
+    leftGainNode.current.connect(channelMergerNode, 0, 0);
+    rightGainNode.current.connect(channelMergerNode, 0, 1);
+
+    // EQ Filters
+    let eqList = [
+      {
+        f: 32,
+        type: 'lowshelf',
+      },
+      {
+        f: 64,
+        type: 'peaking',
+      },
+      {
+        f: 125,
+        type: 'peaking',
+      },
+      {
+        f: 250,
+        type: 'peaking',
+      },
+      {
+        f: 500,
+        type: 'peaking',
+      },
+      {
+        f: 1000,
+        type: 'peaking',
+      },
+      {
+        f: 2000,
+        type: 'peaking',
+      },
+      {
+        f: 4000,
+        type: 'peaking',
+      },
+      {
+        f: 8000,
+        type: 'peaking',
+      },
+      {
+        f: 16000,
+        type: 'highshelf',
+      },
+    ];
+    eqFilters.current = eqList.map(band => {
+      let filter = wavesurfer.current.backend.ac.createBiquadFilter();
+      filter.type = band.type;
+      filter.gain.value = 0;
+      filter.Q.value = 1;
+      filter.frequency.value = band.f;
+      return filter;
     });
+
+    console.log(leftGainNode.current);
+
+    wavesurfer.current.backend.setFilters([
+      ...eqFilters.current, // need to spread the filters array to pass into function
+      channelSplitterNode,
+      leftGainNode.current,
+      channelMergerNode,
+    ]);
 
     wavesurfer.current.on('error', msg => {
       console.log('Error: ', msg);
     });
 
     wavesurfer.current.on('ready', () => {
-      console.log('WS: ', wavesurfer.current);
-      setPlayerState(prev => ({ ...prev, isRefReady: true }));
+      setIsRefReady(true);
     });
 
     // Destroy previous wavesurfer instance on change.
@@ -87,17 +160,19 @@ const WS = ({ fileContents }) => {
         <Accordion defaultIndex={[0]} allowMultiple allowToggle>
           {/* Player Options */}
           <WaveSurferOption title="Player Controls">
-            {playerState.isRefReady && (
+            {isRefReady && (
               <PlayerControls
-                setPlayerState={setPlayerState}
-                playerState={playerState}
+                leftGainNode={leftGainNode.current}
+                rightGainNode={rightGainNode.current}
                 wavesurferRef={wavesurfer}
               />
             )}
           </WaveSurferOption>
           {/* EQ */}
           <WaveSurferOption title="EQ">
-            {playerState.isRefReady && <EQ wavesurferRef={wavesurfer} />}
+            {isRefReady && (
+              <EQ filters={eqFilters.current} wavesurferRef={wavesurfer} />
+            )}
           </WaveSurferOption>
         </Accordion>
       </Box>

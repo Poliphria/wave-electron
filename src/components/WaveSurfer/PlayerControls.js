@@ -1,14 +1,4 @@
-import {
-  Flex,
-  IconButton,
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Flex, SliderMark, VStack, Text, Box } from '@chakra-ui/react';
 import {
   FaBackward,
   FaForward,
@@ -19,8 +9,21 @@ import {
 } from 'react-icons/fa';
 import WaveSurferControlButton from './WaveSurferControlButton';
 import OptionSlider from './OptionSlider';
+import { useState } from 'react';
 
-const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
+const PlayerControls = ({ wavesurferRef, leftGainNode, rightGainNode }) => {
+  // player state
+  const [playerState, setPlayerState] = useState({
+    isPlaying: false,
+  });
+
+  const [leftVolume, setLeftVolume] = useState(100);
+  const [rightVolume, setRightVolume] = useState(100);
+
+  wavesurferRef.current.on('finish', () => {
+    setPlayerState(prev => ({ ...prev, isPlaying: false }));
+  });
+
   // Styles for slider labels
   const labelStyles = {
     mt: '6',
@@ -65,6 +68,21 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
     wavesurferRef.current.setVolume(wsValue);
   };
 
+  const handleStereoSliderChange = value => {
+    if (value < 0) {
+      leftGainNode.gain.value = 1;
+      setLeftVolume(Math.round(leftGainNode.gain.value * 100));
+      rightGainNode.gain.value = 1 - Math.abs(value / 100);
+      setRightVolume(Math.round(rightGainNode.gain.value * 100));
+    } else {
+      rightGainNode.gain.value = 1;
+      setRightVolume(Math.round(rightGainNode.gain.value * 100));
+      leftGainNode.gain.value = 1 - Math.abs(value / 100);
+      setLeftVolume(Math.round(leftGainNode.gain.value * 100));
+    }
+    console.log('left gain value: ', leftGainNode.gain.value);
+    console.log('right gain value: ', rightGainNode.gain.value);
+  };
   return (
     <VStack p={2} width="100%" spacing={16}>
       {/* Player Control Buttons */}
@@ -97,15 +115,25 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
         min={-100}
         max={100}
         defaultValue={0}
+        handleChange={handleStereoSliderChange}
       >
+        {/* Slider Marks for Stereo Panner */}
+        {/* Left slider mark */}
         <SliderMark value={-100} {...labelStyles}>
-          L
+          <Flex ml={-2} alignItems="center" flexDir="column">
+            <Text>L</Text>
+            <Text>{leftVolume}%</Text>
+          </Flex>
         </SliderMark>
         <SliderMark value={0} {...labelStyles}>
           M
         </SliderMark>
+        {/* Right slider mark */}
         <SliderMark value={100} {...labelStyles}>
-          R
+          <Flex ml={-3} alignItems="center" flexDir="column">
+            <Text>R</Text>
+            <Text>{rightVolume}%</Text>
+          </Flex>
         </SliderMark>
       </OptionSlider>
       ;{/* Speed Slider */}
@@ -115,6 +143,7 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
         min={25}
         max={100}
         defaultValue={100}
+        hasTooltip
       >
         <SliderMark value={25} {...labelStyles}>
           25%
@@ -134,6 +163,7 @@ const PlayerControls = ({ wavesurferRef, playerState, setPlayerState }) => {
         max={100}
         defaultValue={100}
         handleChange={handleVolumeChange}
+        hasTooltip
       />
     </VStack>
   );
