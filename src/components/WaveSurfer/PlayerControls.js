@@ -1,4 +1,4 @@
-import { Flex, SliderMark, VStack, Text, Box } from '@chakra-ui/react';
+import { Flex, SliderMark, VStack, Text } from '@chakra-ui/react';
 import {
   FaBackward,
   FaForward,
@@ -83,6 +83,10 @@ const PlayerControls = ({ wavesurferRef, leftGainNode, rightGainNode }) => {
     console.log('left gain value: ', leftGainNode.gain.value);
     console.log('right gain value: ', rightGainNode.gain.value);
   };
+
+  const handleSpeedSliderChange = value => {
+    wavesurferRef.current.setPlaybackRate(value / 100);
+  };
   return (
     <VStack p={2} width="100%" spacing={16}>
       {/* Player Control Buttons */}
@@ -144,6 +148,7 @@ const PlayerControls = ({ wavesurferRef, leftGainNode, rightGainNode }) => {
         max={100}
         defaultValue={100}
         hasTooltip
+        handleChange={handleSpeedSliderChange}
       >
         <SliderMark value={25} {...labelStyles}>
           25%

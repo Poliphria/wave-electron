@@ -29,8 +29,6 @@ const OptionSlider = ({
     handleChange(value);
   };
 
-  console.log('has tooltip: ', props.hasTooltip);
-
   return (
     <Flex flexDir="row" width="100%">
       <Text width="15%" pr={4}>
