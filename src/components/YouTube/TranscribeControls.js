@@ -119,7 +119,7 @@ const TranscribeControls = props => {
 
   return (
     <Flex direction="row">
-      <Box width="45%" height="45%">
+      <Box width="45%" height="45%" pl={2}>
         <YouTube
           videoId={props.videoID}
           opts={playerOpt}
