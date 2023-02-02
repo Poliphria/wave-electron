@@ -63,8 +63,9 @@ const PlayerControls = ({ wavesurferRef, leftGainNode, rightGainNode }) => {
     if (wavesurferRef.current.regions.list['loop-region']) {
       let region = wavesurferRef.current.regions.list['loop-region'];
       wavesurferRef.current.setCurrentTime(region.start);
+    } else {
+      wavesurferRef.current.seekTo(0);
     }
-    wavesurferRef.current.seekTo(0);
   };
 
   const handleSeekBackwards = () => {
