@@ -45,13 +45,27 @@ const PlayerControls = ({ wavesurferRef, leftGainNode, rightGainNode }) => {
   };
 
   const handleStopButton = () => {
-    wavesurferRef.current.stop();
-    wavesurferRef.current.seekAndCenter(0);
-    setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    if (wavesurferRef.current.regions.list['loop-region']) {
+      let region = wavesurferRef.current.regions.list['loop-region'];
+      if (playerState.isPlaying) {
+        setPlayerState(prev => ({ ...prev, isPlaying: false }));
+      }
+      wavesurferRef.current.setCurrentTime(region.start);
+      wavesurferRef.current.pause();
+    } else {
+      wavesurferRef.current.stop();
+      wavesurferRef.current.seekAndCenter(0);
+      setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    }
   };
 
   const handleStepBack = () => {
-    wavesurferRef.current.seekTo(0);
+    if (wavesurferRef.current.regions.list['loop-region']) {
+      let region = wavesurferRef.current.regions.list['loop-region'];
+      wavesurferRef.current.setCurrentTime(region.start);
+    } else {
+      wavesurferRef.current.seekTo(0);
+    }
   };
 
   const handleSeekBackwards = () => {
