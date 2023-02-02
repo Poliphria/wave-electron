@@ -175,6 +175,10 @@ const WS = ({ fileContents }) => {
       });
     });
 
+    wavesurfer.current.on('region-out', region => {
+      region.playLoop();
+    });
+
     // Destroy previous wavesurfer instance on change.
     return () => {
       wavesurfer.current.destroy();
