@@ -2,6 +2,7 @@ import { Flex, Box, Accordion } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import ws from 'wavesurfer.js';
 import CursorPlugin from 'wavesurfer.js/src/plugin/cursor';
+import RegionsPlugin from 'wavesurfer.js/src/plugin/regions';
 import WaveSurferOption from './WaveSurferOption';
 import EQ from './EQ';
 import PlayerControls from './PlayerControls';
@@ -9,18 +10,23 @@ import PlayerControls from './PlayerControls';
 const WS = ({ fileContents }) => {
   // player state
   const [isRefReady, setIsRefReady] = useState(false);
+
   // reference for container wavetable to be held in
   const waveformRef = useRef(null);
 
   // reference to wavesurfer object itself
   const wavesurfer = useRef(null);
 
+  // references to channel volume nodes and filter nodes
   let eqFilters = useRef();
   let leftGainNode = useRef();
   let rightGainNode = useRef();
+
   // Create WaveSurfer instance
   useEffect(() => {
-    // wavesurfer options
+    /**
+     * Wavesurfer options
+     */
     let wsOptions = {
       container: waveformRef.current,
       plugins: [
@@ -34,6 +40,10 @@ const WS = ({ fileContents }) => {
             'font-size': '12px',
           },
         }),
+        RegionsPlugin.create({
+          slop: 4, // mouse drag event tolerance
+          maxRegions: 1,
+        }),
       ],
       barWidth: 3,
       scrollParent: true,
@@ -44,7 +54,7 @@ const WS = ({ fileContents }) => {
       barGap: 2,
       barRadius: 3,
       cursorWidth: 3,
-      backend: 'MediaElementWebAudio',
+      backend: 'MediaElementWebAudio', // allows for use of html5 and WebAudio backend methods/props
     };
 
     wavesurfer.current = ws.create(wsOptions);
@@ -56,7 +66,9 @@ const WS = ({ fileContents }) => {
     audio.src = URL.createObjectURL(blob);
     wavesurfer.current.load(audio);
 
-    // Channel Volume Filters
+    /**
+     * Channel Volume Filters
+     */
     const channelSplitterNode =
       wavesurfer.current.backend.ac.createChannelSplitter(2);
     const channelMergerNode =
@@ -73,7 +85,9 @@ const WS = ({ fileContents }) => {
     leftGainNode.current.connect(channelMergerNode, 0, 0);
     rightGainNode.current.connect(channelMergerNode, 0, 1);
 
-    // EQ Filters
+    /**
+     * Filters
+     */
     let eqList = [
       {
         f: 32,
@@ -134,12 +148,31 @@ const WS = ({ fileContents }) => {
       channelMergerNode,
     ]);
 
+    /**
+     * Wavesurfer events
+     */
     wavesurfer.current.on('error', msg => {
       console.log('Error: ', msg);
     });
 
     wavesurfer.current.on('ready', () => {
       setIsRefReady(true);
+      wavesurfer.current.enableDragSelection({
+        id: 'loop-region',
+        loop: true,
+        color: 'hsla(0, 100%, 50%, 0.3)',
+        minLength: 1,
+      });
+    });
+
+    wavesurfer.current.on('region-created', region => {
+      region.on('dblclick', event => {
+        region.remove();
+      });
+      region.on('update-end', () => {
+        wavesurfer.current.backend.seekTo(region.start);
+        console.log('region created: ', region);
+      });
     });
 
     // Destroy previous wavesurfer instance on change.
