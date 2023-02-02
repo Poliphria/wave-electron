@@ -1919,6 +1919,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/anton@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/anton/-/anton-4.5.9.tgz#eb7884f9125b490981fbd6e20f580d3a48d75acd"
+  integrity sha512-/WhUp4eSkphwXcexGz9r3Cj1l3jy4pW5ecGcaVdwf7Cti2WMc+t2xof/dZfTCN3se+egzeZxDCgFbZnbtIvaEw==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
