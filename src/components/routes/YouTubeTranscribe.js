@@ -16,8 +16,15 @@ const YouTube = props => {
   let videoID = location.state.videoID;
 
   return (
-    <Container justifyContent="center" fontSize="xl">
-      <Flex padding={5} direction="row" width="100%">
+    <Container fontSize="xl">
+      <Flex
+        px={10}
+        direction="row"
+        width="100%"
+        height="100%"
+        alignItems="center"
+        mb={100}
+      >
         <Box width="100%">
           <TranscribeControls videoID={videoID} />
         </Box>

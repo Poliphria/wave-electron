@@ -7,7 +7,6 @@ export const ColorModeSwitcher = props => {
   const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
 
-
   return (
     <IconButton
       size="md"
@@ -22,4 +21,4 @@ export const ColorModeSwitcher = props => {
   );
 };
 
-export default ColorModeSwitcher
+export default ColorModeSwitcher;

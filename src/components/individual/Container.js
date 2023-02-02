@@ -1,21 +1,20 @@
-import {
-    Flex,
-} from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react';
+import NavBar from './NavBar';
 
-export const Container = (props) => {
+export const Container = props => {
+  return (
+    <Flex
+      direction="column"
+      alignItems="center"
+      justifyContent="flex-start"
+      width="100vw"
+      height="100vh"
+      {...props}
+    >
+      <NavBar />
+      {props.children}
+    </Flex>
+  );
+};
 
-    return (
-        <Flex
-            direction="column"
-            alignItems="center"
-            justifyContent="flex-start"
-            position="absolute"
-            bgSize="300% 300%"
-            width="100vw"
-            height="100vh"
-            {...props}
-        />
-    )
-}
-
-export default Container
+export default Container;
