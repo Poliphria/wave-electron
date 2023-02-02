@@ -1,7 +1,7 @@
 // ./public/electron.js
-const { app, BrowserWindow, session, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
-const { openFile, validateURL } = require('./utils/main/eventHandlers');
+const { openFile } = require('./utils/main/eventHandlers');
 const path = require('path');
 
 // Add React Developer Tools if in Dev mode
@@ -22,6 +22,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    center: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
@@ -38,6 +39,8 @@ function createWindow() {
   if (isDev) {
     win.webContents.openDevTools({ mode: 'detach' });
   }
+
+  return win
 }
 
 // This method will be called when Electron has finished
@@ -46,23 +49,23 @@ function createWindow() {
 app.whenReady().then(() => {
   try {
     // await session.defaultSession.loadExtension(reactDevToolsPath)
-    
+    const win = createWindow()
+
     // Listen for open file ask from renderer
     ipcMain.handle('dialog:openFile', openFile)
-      
-    createWindow()
-    app.on('activate', () => {
-      if (BrowserWindow.getAllWindows() === 0) createWindow()
-    })
 
-    // need to set this so renderer process uses https for yt iframe api call
-    app.setAsDefaultProtocolClient('https') 
-    
+    // Listen for center window 
+    ipcMain.handle('centerWindow', (event) => {
+      win.center()
+    })
   } catch (err) {
     console.error('err: ', err)
     app.exit()
   }
 });
+
+// need to set this so renderer process uses https for yt iframe api call
+app.setAsDefaultProtocolClient('https')
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bars to stay active until the user quits
@@ -72,3 +75,8 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows() === 0) createWindow()
+})
+

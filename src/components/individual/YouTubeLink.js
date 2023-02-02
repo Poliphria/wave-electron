@@ -5,27 +5,27 @@ import {
   InputRightElement,
   FormControl,
   FormErrorMessage,
-} from "@chakra-ui/react";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Formik, Field } from "formik";
-import { matchYouTubeURL, getYouTubeID } from "../../utils/matchYouTubeURL";
+} from '@chakra-ui/react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Formik, Field } from 'formik';
+import { matchYouTubeURL, getYouTubeID } from '../../utils/matchYouTubeURL';
 
 export default function YoutubeLink() {
-  let navigate = useNavigate() // navigation function for react router
+  let navigate = useNavigate(); // navigation function for react router
 
   return (
     <Formik
       initialValues={{
-        link: "",
+        link: '',
       }}
-      onSubmit={(values) => {
-        console.log(values)
-        navigate('/transcribe', {
+      onSubmit={values => {
+        console.log(values);
+        navigate('/transcribe/youtube', {
           state: {
-            videoID: getYouTubeID(values.link)
-          }
-        })
+            videoID: getYouTubeID(values.link),
+          },
+        });
       }}
       validateOnBlur={false}
       validateOnChange={false}
@@ -41,17 +41,16 @@ export default function YoutubeLink() {
                 type="text"
                 pr="4.5rem"
                 placeholder="YouTube Link"
-                validate={(value) => {
-                  console.log("value: ", value)
-                  let error
+                validate={value => {
+                  console.log('value: ', value);
+                  let error;
                   if (!value) {
-                    error = "This is required."
-                  }
-                  else if (!matchYouTubeURL(value)) {
-                    error = "Invalid YouTube Link"
+                    error = 'This is required.';
+                  } else if (!matchYouTubeURL(value)) {
+                    error = 'Invalid YouTube Link';
                   }
 
-                  return error
+                  return error;
                 }}
               />
               <InputRightElement width="4.5rem">

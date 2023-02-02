@@ -1,13 +1,20 @@
 // Button used to upload an audio file and send to '/transcribe' page
 import { Box, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const UploadButton = () => {
+  const navigate = useNavigate()
 
   const handleClick = async () => {
     try {
-      const filePath = await window.api.openFile() // call exposed api from preload script
-      if (filePath) {
-        console.log(filePath)
+      const fileContents = await window.api.openFile() // call exposed api from preload script
+      if (fileContents) {
+        console.log("blpb in renderer: ", fileContents)
+        navigate('/transcribe/file', {
+          state: {
+            fileContents: fileContents
+          }
+        })
       }
     } catch(err) {
       console.log(err)
